@@ -13,7 +13,12 @@ namespace Game.Scripts.Players.Main
 
         public override void InstallBindings()
         {
+            Container.Bind<PlayerInputState>().AsSingle();
+
+            Container.BindInterfacesTo<PlayerInputHandler>().AsSingle();
             Container.BindInterfacesTo<PlayerMoveHandler>().AsSingle();
+
+            Container.BindExecutionOrder<PlayerInputHandler>(-10000);
         }
 
     #endregion

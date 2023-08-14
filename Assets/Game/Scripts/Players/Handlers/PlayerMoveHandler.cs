@@ -13,7 +13,10 @@ namespace Game.Scripts.Players.Handlers
     #region Private Variables
 
         [Inject]
-        private PlayerCharacter playerCharacter;
+        private PlayerCharacter character;
+
+        [Inject]
+        private PlayerInputState inputState;
 
     #endregion
 
@@ -23,9 +26,8 @@ namespace Game.Scripts.Players.Handlers
         {
             // movement: fps * player's move speed * move direction
             // movement + player's pos
-            var moveDirection = new Vector2(1 , 1);
-            var movement      = Time.deltaTime * playerCharacter.MoveSpeed * moveDirection;
-            playerCharacter.SetPos(movement + playerCharacter.GetPos());
+            var movement = Time.deltaTime * character.MoveSpeed * inputState.MoveDirection;
+            character.SetPos(movement + character.GetPos());
         }
 
     #endregion
