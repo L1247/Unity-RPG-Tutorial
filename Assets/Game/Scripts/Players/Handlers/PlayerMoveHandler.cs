@@ -30,7 +30,8 @@ namespace Game.Scripts.Players.Handlers
             // movement: fps * player's move speed * move direction
             // movement + player's pos
             var movement = deltaTimeProvider.GetDeltaTime() * character.MoveSpeed * inputState.MoveDirection;
-            character.SetPos(movement + character.GetPos());
+            var newPos   = movement + character.GetPos();
+            character.SetPos(newPos);
         }
 
     #endregion
