@@ -28,7 +28,8 @@ namespace Game.Scripts.Players.Handlers
         public void Tick()
         {
             // movement: fps * player's move speed * move direction
-            // movement + player's pos
+            // newPos = movement + player's pos
+            // set player's character position by new position. 
             var movement = deltaTimeProvider.GetDeltaTime() * character.MoveSpeed * inputState.MoveDirection;
             var newPos   = movement + character.GetPos();
             character.SetPos(newPos);
