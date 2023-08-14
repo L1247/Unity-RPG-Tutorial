@@ -23,6 +23,12 @@ namespace Game.Scripts.Players.Main
             Horizontal = horizontal;
         }
 
+        public void SetMoveDirection(float horizontal , float vertical)
+        {
+            SetHorizontal(horizontal);
+            SetVertical(vertical);
+        }
+
         public void SetVertical(float vertical)
         {
             Vertical = vertical;

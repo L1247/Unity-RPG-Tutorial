@@ -1,6 +1,7 @@
 #region
 
 using UnityEngine;
+using Zenject;
 
 #endregion
 
@@ -10,7 +11,17 @@ namespace Game.Scripts.Players.Main
     {
     #region Public Variables
 
-        public float MoveSpeed = 5f;
+        [Inject]
+        public float MoveSpeed { get; }
+
+        public Transform Trans
+        {
+            get
+            {
+                if (trans == null) trans = transform;
+                return trans;
+            }
+        }
 
     #endregion
 
@@ -20,25 +31,16 @@ namespace Game.Scripts.Players.Main
 
     #endregion
 
-    #region Unity events
-
-        private void Awake()
-        {
-            trans = transform;
-        }
-
-    #endregion
-
     #region Public Methods
 
         public Vector2 GetPos()
         {
-            return trans.position;
+            return Trans.position;
         }
 
         public void SetPos(Vector2 newPos)
         {
-            trans.position = newPos;
+            Trans.position = newPos;
         }
 
     #endregion

@@ -1,7 +1,6 @@
 #region
 
 using Game.Scripts.Players.Main;
-using UnityEngine;
 using Zenject;
 
 #endregion
@@ -18,6 +17,9 @@ namespace Game.Scripts.Players.Handlers
         [Inject]
         private PlayerInputState inputState;
 
+        [Inject]
+        private IDeltaTimeProvider deltaTimeProvider;
+
     #endregion
 
     #region Public Methods
@@ -26,7 +28,7 @@ namespace Game.Scripts.Players.Handlers
         {
             // movement: fps * player's move speed * move direction
             // movement + player's pos
-            var movement = Time.deltaTime * character.MoveSpeed * inputState.MoveDirection;
+            var movement = deltaTimeProvider.GetDeltaTime() * character.MoveSpeed * inputState.MoveDirection;
             character.SetPos(movement + character.GetPos());
         }
 

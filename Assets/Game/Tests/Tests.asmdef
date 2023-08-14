@@ -2,9 +2,10 @@
     "name": "Tests",
     "rootNamespace": "",
     "references": [
-        "UnityEditor.TestRunner",
-        "rStatUtility.TestFramework",
-        "Scripts"
+      "UnityEditor.TestRunner",
+      "rStatUtility.TestFramework",
+      "Zenject",
+      "Scripts"
     ],
     "includePlatforms": [
         "Editor"
@@ -13,8 +14,9 @@
     "allowUnsafeCode": false,
     "overrideReferences": true,
     "precompiledReferences": [
-        "nunit.framework.dll",
-        "NSubstitute.dll"
+      "nunit.framework.dll",
+      "NSubstitute.dll",
+      "FluentAssertions.dll"
     ],
     "autoReferenced": false,
     "defineConstraints": [
