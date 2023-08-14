@@ -1,5 +1,6 @@
 #region
 
+using Game.Scripts.Battle.Misc;
 using Game.Scripts.Players.Handlers;
 using Game.Scripts.Players.Main;
 using NSubstitute;
@@ -16,7 +17,7 @@ public class PlayerCharacterTests : TestFixture_DI_Log
     [Test(Description = "透過玩家輸入，移動玩家角色")]
     public void MovePlayerCharacter_By_PlayerInput()
     {
-        Container.Bind<float>().FromInstance(1);
+        Container.Bind<float>().WithId("MoveSpeed").FromInstance(1);
         Container.Bind<PlayerCharacter>().FromNewComponentOnNewGameObject().AsSingle();
 
         var playerCharacter = Container.Resolve<PlayerCharacter>();

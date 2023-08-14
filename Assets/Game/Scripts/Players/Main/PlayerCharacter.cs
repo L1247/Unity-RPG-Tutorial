@@ -11,7 +11,7 @@ namespace Game.Scripts.Players.Main
     {
     #region Public Variables
 
-        [Inject]
+        [Inject(Id = "MoveSpeed")]
         public float MoveSpeed { get; }
 
         public Transform Trans

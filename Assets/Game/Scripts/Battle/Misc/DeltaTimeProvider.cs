@@ -4,7 +4,7 @@ using UnityEngine;
 
 #endregion
 
-namespace Game.Scripts.Players.Handlers
+namespace Game.Scripts.Battle.Misc
 {
     public interface IDeltaTimeProvider
     {
