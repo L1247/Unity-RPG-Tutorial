@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "com.rstar.rstarutility": "https://github.com/L1247/rStarUtility.git?path=Assets/rStarUtility",
+    "com.rstartools.bookmarkeverything": "https://github.com/L1247/bookmark-everything.git?path=BookmarkEverything/Assets/BookmarkEverything",
     "com.unity.feature.2d": "2.0.0",
     "com.unity.ide.rider": "3.0.16",
     "com.unity.render-pipelines.universal": "14.0.8",

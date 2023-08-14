@@ -41,6 +41,13 @@
       },
       "hash": "9761dbaeda67cdec94f13c87077877d32ea0e504"
     },
+    "com.rstartools.bookmarkeverything": {
+      "version": "https://github.com/L1247/bookmark-everything.git?path=BookmarkEverything/Assets/BookmarkEverything",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "39627c3851de0b81ee76a3995d875cb01ab729d3"
+    },
     "com.svermeulen.extenject": {
       "version": "9.2.0-stcf3",
       "depth": 1,
