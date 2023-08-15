@@ -17,12 +17,14 @@ public class PlayerCharacterTests : TestFixture_DI_Log
     [Test(Description = "透過玩家輸入，移動玩家角色")]
     public void MovePlayerCharacter_By_PlayerInput()
     {
-        Container.Bind<float>().WithId("MoveSpeed").FromInstance(1);
-        Container.Bind<PlayerCharacter>().FromNewComponentOnNewGameObject().AsSingle();
+        BindInstance(1f , "MoveSpeed");
+        // Container.Bind<float>().WithId("MoveSpeed").FromInstance(1);
+        var playerCharacter = Bind_ComponentOnNewGameObject_And_Resolve<PlayerCharacter>();
+        // Container.Bind<PlayerCharacter>().FromNewComponentOnNewGameObject().AsSingle();
+        // var playerCharacter = Resolve<PlayerCharacter>();
 
-        var playerCharacter = Container.Resolve<PlayerCharacter>();
-        var inputState      = BindAndResolve<PlayerInputState>();
-        var timeProvider    = BindMockAndResolve<IDeltaTimeProvider>();
+        var inputState   = BindAndResolve<PlayerInputState>();
+        var timeProvider = BindMockAndResolve<IDeltaTimeProvider>();
         timeProvider.GetDeltaTime().Returns(1);
         inputState.SetMoveDirection(1 , 1);
 
