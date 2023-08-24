@@ -1,5 +1,6 @@
 #region
 
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -11,8 +12,7 @@ namespace Game.Scripts.Players.Main
     {
     #region Public Variables
 
-        [Inject(Id = "MoveSpeed")]
-        public float MoveSpeed { get; }
+        public float MoveSpeed { get; private set; }
 
         public Transform Trans
         {
@@ -26,6 +26,9 @@ namespace Game.Scripts.Players.Main
     #endregion
 
     #region Private Variables
+
+        [Inject]
+        private Data data;
 
         private Transform trans;
 
@@ -41,6 +44,35 @@ namespace Game.Scripts.Players.Main
         public void SetPos(Vector2 newPos)
         {
             Trans.position = newPos;
+        }
+
+    #endregion
+
+    #region Private Methods
+
+        [Inject]
+        private void Init()
+        {
+            MoveSpeed = data.moveSpeed;
+            Debug.Log($"{MoveSpeed}");
+        }
+
+    #endregion
+
+    #region Nested Types
+
+        [Serializable]
+        public class Data
+        {
+        #region Public Variables
+
+            public float atk;
+            public float hp;
+
+            [Min(1)]
+            public float moveSpeed = 5f;
+
+        #endregion
         }
 
     #endregion

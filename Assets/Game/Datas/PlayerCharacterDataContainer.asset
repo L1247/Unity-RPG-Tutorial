@@ -10,6 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7358be8676864feb8dbf29f949da7138, type: 3}
-  m_Name: PlayerCharacterData
+  m_Name: PlayerCharacterDataContainer
   m_EditorClassIdentifier: 
   moveSpeed: 10
+  playerCharacterData:
+    moveSpeed: 7.41
+    atk: 0

@@ -17,11 +17,8 @@ public class PlayerCharacterTests : TestFixture_DI_Log
     [Test(Description = "透過玩家輸入，移動玩家角色")]
     public void MovePlayerCharacter_By_PlayerInput()
     {
-        BindInstance(1f , "MoveSpeed");
-        // Container.Bind<float>().WithId("MoveSpeed").FromInstance(1);
+        BindInstance(new PlayerCharacter.Data { moveSpeed = 1 });
         var playerCharacter = Bind_ComponentOnNewGameObject_And_Resolve<PlayerCharacter>();
-        // Container.Bind<PlayerCharacter>().FromNewComponentOnNewGameObject().AsSingle();
-        // var playerCharacter = Resolve<PlayerCharacter>();
 
         var inputState   = BindAndResolve<PlayerInputState>();
         var timeProvider = BindMockAndResolve<ITimeProvider>();
