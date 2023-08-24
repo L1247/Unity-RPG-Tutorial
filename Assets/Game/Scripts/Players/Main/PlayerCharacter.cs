@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using Game.Scripts.Names;
 using Game.Scripts.RPG;
 using rStarUtility.Generic.Infrastructure;
 using UnityEngine;
@@ -56,10 +57,9 @@ namespace Game.Scripts.Players.Main
 
         public void SetMoveSpeed(float moveSpeed)
         {
-            var (contains , stat) = stats.FindContent(_ => _.Name == "MoveSpeed");
-            Debug.Log($"MoveSpeed: {contains} ");
+            var (contains , stat) = stats.FindContent(_ => _.Name == StatNames.MoveSpeed);
             if (contains) stat.SetAmount(moveSpeed);
-            else stats.Add(new Stat("MoveSpeed" , moveSpeed));
+            else stats.Add(new Stat(StatNames.MoveSpeed , moveSpeed));
         }
 
         public void SetPos(Vector2 newPos)

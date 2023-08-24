@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using Game.Scripts.Battle.Misc;
+using Game.Scripts.Names;
 using Game.Scripts.Players.Handlers;
 using Game.Scripts.Players.Main;
 using Game.Scripts.RPG;
@@ -19,12 +20,12 @@ public class PlayerCharacterTests : TestFixture_DI_Log
     [Test(Description = "初始化角色，角色數值正確")]
     public void Init_PlayerCharacter_Stats_WouldBe_Correct()
     {
-        var statDatas = new List<Stat.Data> { new Stat.Data() { name = "MoveSpeed" , amount = 999 } };
+        var statDatas = new List<Stat.Data> { new Stat.Data() { name = StatNames.MoveSpeed , amount = 999 } };
         BindInstance(new PlayerCharacter.Data() { statDatas = statDatas });
         var character = NewPlayerCharacter();
 
         character.Stats.CountShouldBe(1);
-        character.GetStatFinalValue("MoveSpeed").ShouldBe(999);
+        character.GetStatFinalValue(StatNames.MoveSpeed).ShouldBe(999);
     }
 
     [Test(Description = "透過玩家輸入，移動玩家角色")]
