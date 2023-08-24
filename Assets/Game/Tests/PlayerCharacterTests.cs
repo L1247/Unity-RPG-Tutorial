@@ -24,7 +24,7 @@ public class PlayerCharacterTests : TestFixture_DI_Log
         // var playerCharacter = Resolve<PlayerCharacter>();
 
         var inputState   = BindAndResolve<PlayerInputState>();
-        var timeProvider = BindMockAndResolve<IDeltaTimeProvider>();
+        var timeProvider = BindMockAndResolve<ITimeProvider>();
         timeProvider.GetDeltaTime().Returns(1);
         inputState.SetMoveDirection(1 , 1);
 

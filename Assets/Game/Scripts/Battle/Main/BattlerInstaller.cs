@@ -13,7 +13,7 @@ namespace Game.Scripts.Battle.Main
 
         public override void InstallBindings()
         {
-            Container.Bind<IDeltaTimeProvider>().To<DeltaTimeProvider>().AsSingle();
+            Container.Bind<ITimeProvider>().To<TimeProvider>().AsSingle();
         }
 
     #endregion

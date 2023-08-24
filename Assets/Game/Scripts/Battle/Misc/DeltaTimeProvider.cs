@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Game.Scripts.Battle.Misc
 {
-    public interface IDeltaTimeProvider
+    public interface ITimeProvider
     {
     #region Public Methods
 
@@ -15,7 +15,7 @@ namespace Game.Scripts.Battle.Misc
     #endregion
     }
 
-    public class DeltaTimeProvider : IDeltaTimeProvider
+    public class TimeProvider : ITimeProvider
     {
     #region Public Methods
 
