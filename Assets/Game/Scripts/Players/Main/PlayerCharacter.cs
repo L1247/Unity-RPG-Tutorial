@@ -41,6 +41,11 @@ namespace Game.Scripts.Players.Main
             return Trans.position;
         }
 
+        public void SetMoveSpeed(float moveSpeed)
+        {
+            MoveSpeed = moveSpeed;
+        }
+
         public void SetPos(Vector2 newPos)
         {
             Trans.position = newPos;
@@ -54,7 +59,6 @@ namespace Game.Scripts.Players.Main
         private void Init()
         {
             MoveSpeed = data.moveSpeed;
-            Debug.Log($"{MoveSpeed}");
         }
 
     #endregion
@@ -70,7 +74,7 @@ namespace Game.Scripts.Players.Main
             public float hp;
 
             [Min(1)]
-            public float moveSpeed = 5f;
+            public float moveSpeed;
 
         #endregion
         }
