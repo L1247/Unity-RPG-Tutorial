@@ -39,7 +39,7 @@
         "com.cysharp.messagepipe.zenject": "1.7.4",
         "com.neuecc.unirx": "7.1.0"
       },
-      "hash": "6538a7169b8147134c2f1b6335a452e814022f5e"
+      "hash": "feb0de8f78bdb799c90050cf81fef99a36ac2038"
     },
     "com.rstartools.bookmarkeverything": {
       "version": "https://github.com/L1247/bookmark-everything.git?path=BookmarkEverything/Assets/BookmarkEverything",
