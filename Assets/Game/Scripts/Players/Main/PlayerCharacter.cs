@@ -15,8 +15,6 @@ namespace Game.Scripts.Players.Main
     {
     #region Public Variables
 
-        public float MoveSpeed => GetStatFinalValue("MoveSpeed");
-
         public IEnumerable<Stat> Stats => stats.Contents;
 
         public Transform Trans
@@ -48,6 +46,14 @@ namespace Game.Scripts.Players.Main
             return Trans.position;
         }
 
+        public float GetStatFinalValue(string statName)
+        {
+            var finalValue = 0f;
+            var (contains , stat) = FindStat(statName);
+            if (contains) finalValue = stat.Amount;
+            return finalValue;
+        }
+
         public void SetMoveSpeed(float moveSpeed)
         {
             var (contains , stat) = stats.FindContent(_ => _.Name == "MoveSpeed");
@@ -71,16 +77,13 @@ namespace Game.Scripts.Players.Main
             return findStat;
         }
 
-        private float GetStatFinalValue(string statName)
-        {
-            var finalValue = 0f;
-            var (contains , stat) = FindStat(statName);
-            if (contains) finalValue = stat.Amount;
-            return finalValue;
-        }
-
         [Inject]
         private void Init()
+        {
+            InitStats();
+        }
+
+        private void InitStats()
         {
             foreach (var statData in data.statDatas)
             {

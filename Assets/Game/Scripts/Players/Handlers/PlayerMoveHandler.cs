@@ -30,8 +30,9 @@ namespace Game.Scripts.Players.Handlers
             // movement: fps * player's move speed * move direction
             // newPos = movement + player's pos
             // set player's character position by new position. 
-            var movement = timeProvider.GetDeltaTime() * character.MoveSpeed * inputState.MoveDirection;
-            var newPos   = movement + character.GetPos();
+            var moveSpeed = character.GetStatFinalValue("MoveSpeed");
+            var movement  = timeProvider.GetDeltaTime() * moveSpeed * inputState.MoveDirection;
+            var newPos    = movement + character.GetPos();
             character.SetPos(newPos);
         }
 

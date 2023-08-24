@@ -24,7 +24,7 @@ public class PlayerCharacterTests : TestFixture_DI_Log
         var character = NewPlayerCharacter();
 
         character.Stats.CountShouldBe(1);
-        character.MoveSpeed.ShouldBe(999);
+        character.GetStatFinalValue("MoveSpeed").ShouldBe(999);
     }
 
     [Test(Description = "透過玩家輸入，移動玩家角色")]

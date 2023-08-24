@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7358be8676864feb8dbf29f949da7138, type: 3}
   m_Name: PlayerCharacterDataContainer
   m_EditorClassIdentifier: 
-  moveSpeed: 10
   playerCharacterData:
-    moveSpeed: 7.41
-    atk: 0
+    statDatas:
+    - amount: 5
+      name: MoveSpeed
+    - amount: 5
+      name: Atk
