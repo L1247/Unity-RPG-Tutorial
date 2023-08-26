@@ -57,11 +57,13 @@ namespace Game.Scripts.RPG
             [MinValue("@MinValue")]
             [MaxValue("@MaxValue")]
             [Tooltip("@MinMaxInfo")]
+            [SuffixLabel("@AmountSuffix" , overlay : true)]
             [SerializeField]
             private float amount;
 
-            private string  MaxValueInfo=> StatMinMaxValues.GetMaxInfo(Name);
-            private string MinMaxInfo => $"最小值: {MinValue}\n最大值: {MaxValueInfo}";
+            private string MaxValueInfo => StatMinMaxValues.GetMaxInfo(Name);
+            private string MinMaxInfo   => $"最小值: {MinValue}\n最大值: {MaxValueInfo}";
+            private string AmountSuffix   => $"{MinValue} ~ {MaxValueInfo}";
 
             [SerializeField]
             private string name;
