@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Game.Scripts.Names;
 using rStarUtility.Util.Extensions.Csharp;
@@ -29,6 +30,12 @@ namespace Game.Scripts.Values
         public static float GetMin(string name)
         {
             return minLookUp.GetOrReturn(name , 0);
+        }
+
+        public static string GetMaxInfo(string name)
+        {
+            var max = GetMax(name);
+            return Math.Abs(max - float.MaxValue) < 0.01f ? "Float.Max" : max.ToString();
         }
     }
 }

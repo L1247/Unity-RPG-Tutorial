@@ -44,8 +44,8 @@ namespace Game.Scripts.RPG
         {
         #region Public Variables
 
-            public  float  Amount   => amount;
-            public  string Name     => name;
+            public float  Amount => amount;
+            public string Name   => name;
 
         #endregion
 
@@ -56,8 +56,12 @@ namespace Game.Scripts.RPG
 
             [MinValue("@MinValue")]
             [MaxValue("@MaxValue")]
+            [Tooltip("@MinMaxInfo")]
             [SerializeField]
             private float amount;
+
+            private string  MaxValueInfo=> StatMinMaxValues.GetMaxInfo(Name);
+            private string MinMaxInfo => $"最小值: {MinValue}\n最大值: {MaxValueInfo}";
 
             [SerializeField]
             private string name;
