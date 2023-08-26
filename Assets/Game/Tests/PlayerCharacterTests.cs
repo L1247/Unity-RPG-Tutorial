@@ -10,6 +10,7 @@ using NSubstitute;
 using NUnit.Framework;
 using rStarUtility.Generic.TestExtensions;
 using rStarUtility.Generic.TestFrameWork;
+using UnityEngine;
 
 #endregion
 
@@ -20,7 +21,7 @@ public class PlayerCharacterTests : TestFixture_DI_Log
     [Test(Description = "初始化角色，角色數值正確")]
     public void Init_PlayerCharacter_Stats_WouldBe_Correct()
     {
-        var statDatas = new List<Stat.Data> { new Stat.Data() { name = StatNames.MoveSpeed , amount = 999 } };
+        var statDatas = new List<Stat.Data> { new Stat.Data(StatNames.MoveSpeed , 999) };
         BindInstance(new PlayerCharacter.Data() { statDatas = statDatas });
         var character = NewPlayerCharacter();
 

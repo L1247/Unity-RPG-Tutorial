@@ -1,6 +1,8 @@
 #region
 
 using System;
+using Game.Scripts.Values;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 #endregion
@@ -42,10 +44,29 @@ namespace Game.Scripts.RPG
         {
         #region Public Variables
 
-            [Min(0)]
-            public float amount;
+            public  float  Amount   => amount;
+            public  string Name     => name;
 
-            public string name;
+        #endregion
+
+        #region Private Variables
+
+            private float MinValue => StatMinMaxValues.GetMin(name);
+            private float MaxValue => StatMinMaxValues.GetMax(Name);
+
+            [MinValue("@MinValue")]
+            [MaxValue("@MaxValue")]
+            [SerializeField]
+            private float amount;
+
+            [SerializeField]
+            private string name;
+
+            public Data(string name , float amount)
+            {
+                this.name   = name;
+                this.amount = amount;
+            }
 
         #endregion
         }

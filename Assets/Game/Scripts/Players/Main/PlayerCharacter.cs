@@ -87,7 +87,7 @@ namespace Game.Scripts.Players.Main
         {
             foreach (var statData in data.statDatas)
             {
-                var stat = new Stat(statData.name , statData.amount);
+                var stat = new Stat(statData.Name , statData.Amount);
                 stats.Add(stat);
             }
         }
