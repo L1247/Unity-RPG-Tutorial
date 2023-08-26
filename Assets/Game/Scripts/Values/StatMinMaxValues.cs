@@ -11,16 +11,16 @@ namespace Game.Scripts.Values
         /// stat's name , max amount
         /// </summary>
         /// <returns></returns>
-        private static Dictionary<string , float> maxLookUp = new Dictionary<string , float>() { { StatNames.MoveSpeed , 30 } , };
+        private static Dictionary<string , float> maxLookUp = new Dictionary<string , float>()
+        {
+            { StatNames.MoveSpeed , 30 } , { StatNames.Atk , 1000 } ,
+        };
 
         /// <summary>
         /// stat's name , min amount
         /// </summary>
         /// <returns></returns>
-        private static Dictionary<string , float> minLookUp = new Dictionary<string , float>()
-        {
-            { StatNames.MoveSpeed , 1 } ,
-        };
+        private static Dictionary<string , float> minLookUp = new Dictionary<string , float>() { { StatNames.MoveSpeed , 1 } , };
 
         public static float GetMax(string name)
         {

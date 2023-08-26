@@ -5,6 +5,7 @@ namespace Game.Scripts.Names
     #region Public Variables
 
         public const string MoveSpeed = "MoveSpeed";
+        public const string Atk       = "Atk";
 
     #endregion
     }

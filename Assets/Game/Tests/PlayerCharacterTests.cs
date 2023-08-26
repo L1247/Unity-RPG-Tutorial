@@ -10,7 +10,6 @@ using NSubstitute;
 using NUnit.Framework;
 using rStarUtility.Generic.TestExtensions;
 using rStarUtility.Generic.TestFrameWork;
-using UnityEngine;
 
 #endregion
 
@@ -21,12 +20,23 @@ public class PlayerCharacterTests : TestFixture_DI_Log
     [Test(Description = "初始化角色，角色數值正確")]
     public void Init_PlayerCharacter_Stats_WouldBe_Correct()
     {
-        var statDatas = new List<Stat.Data> { new Stat.Data(StatNames.MoveSpeed , 999) };
+        var statDatas = new List<Stat.Data> { new Stat.Data(StatNames.Atk , 999) };
         BindInstance(new PlayerCharacter.Data() { statDatas = statDatas });
         var character = NewPlayerCharacter();
 
         character.Stats.CountShouldBe(1);
-        character.GetStatFinalValue(StatNames.MoveSpeed).ShouldBe(999);
+        character.GetStatFinalValue(StatNames.Atk).ShouldBe(999);
+    }
+
+    [Test(Description = "設定角色數值時，會限制最終數值的最大最小值")]
+    [Ignore("還沒做完，正確為計算值的限制")]
+    public void Set_PlayerCharacter_Stats_Amount_WouldBe_Clamp()
+    {
+        var character = NewPlayerCharacter();
+        character.SetMoveSpeed(0);
+
+        character.GetStatFinalValue(StatNames.MoveSpeed).ShouldBe(1);
+        character.GetStatFinalValue(StatNames.Atk).ShouldBe(1000);
     }
 
     [Test(Description = "透過玩家輸入，移動玩家角色")]
