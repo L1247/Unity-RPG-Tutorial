@@ -4,6 +4,7 @@ using System;
 using Game.Scripts.Values;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Assertions;
 using Math = rStarUtility.Util.Helper.Math;
 
 #endregion
@@ -65,10 +66,11 @@ namespace Game.Scripts.RPG
             [OnValueChanged("OnAmountChanged")]
             [SerializeField]
             [LabelText("數值")]
+            [ValidateInput("MinMaxValidation" , "最大值不能小於最小值")]
             private float amount;
 
             [SerializeField]
-            [ValidateInput("@string.IsNullOrEmpty(this.name) == false" , "名稱是空白，需要輸入任意名稱")]
+            [ValidateInput("@ValidateHelper.ValidateString(this.name)" , "名稱是空白，需要輸入任意名稱")]
             [LabelText("名稱")]
             private string name;
 
@@ -78,13 +80,18 @@ namespace Game.Scripts.RPG
 
             public Data(string name , float amount)
             {
-                this.name = name;
+                SetName(name);
                 SetAmount(amount);
             }
 
         #endregion
 
         #region Private Methods
+
+            private bool MinMaxValidation()
+            {
+                return MaxValue > MinValue;
+            }
 
             private void OnAmountChanged(float newAmount)
             {
@@ -96,6 +103,12 @@ namespace Game.Scripts.RPG
                 var min = MinValue;
                 var max = MaxValue;
                 amount = Math.Clamp(newAmount , min , max);
+            }
+
+            private void SetName(string name)
+            {
+                Assert.IsTrue(string.IsNullOrEmpty(name) == false , "name string is null or empty.");
+                this.name = name;
             }
 
         #endregion

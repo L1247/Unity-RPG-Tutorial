@@ -10,6 +10,7 @@ using NSubstitute;
 using NUnit.Framework;
 using rStarUtility.Generic.TestExtensions;
 using rStarUtility.Generic.TestFrameWork;
+using AssertionException = UnityEngine.Assertions.AssertionException;
 
 #endregion
 
@@ -26,17 +27,6 @@ public class PlayerCharacterTests : TestFixture_DI_Log
 
         character.Stats.CountShouldBe(1);
         character.GetStatFinalValue(StatNames.Atk).ShouldBe(999);
-    }
-
-    [Test(Description = "設定角色數值時，會限制最終數值的最大最小值")]
-    [Ignore("還沒做完，正確為計算值的限制")]
-    public void Set_PlayerCharacter_Stats_Amount_WouldBe_Clamp()
-    {
-        var character = NewPlayerCharacter();
-        character.SetMoveSpeed(0);
-
-        character.GetStatFinalValue(StatNames.MoveSpeed).ShouldBe(1);
-        character.GetStatFinalValue(StatNames.Atk).ShouldBe(1000);
     }
 
     [Test(Description = "透過玩家輸入，移動玩家角色")]
@@ -56,6 +46,23 @@ public class PlayerCharacterTests : TestFixture_DI_Log
         playerCharacter.ShouldTransformPositionBe(1 , 1);
         moveHandler.Tick();
         playerCharacter.ShouldTransformPositionBe(2 , 2);
+    }
+
+    [Test(Description = "設定角色數值時，會限制最終數值的最大最小值")]
+    [Ignore("還沒做完，正確為計算值的限制")]
+    public void Set_PlayerCharacter_Stats_Amount_WouldBe_Clamp()
+    {
+        var character = NewPlayerCharacter();
+        character.SetMoveSpeed(0);
+
+        character.GetStatFinalValue(StatNames.MoveSpeed).ShouldBe(1);
+        character.GetStatFinalValue(StatNames.Atk).ShouldBe(1000);
+    }
+
+    [Test(Description = "數值資料名稱不能為空白，會錯誤")]
+    public void Set_StatData_Name_Empty_Should_Error()
+    {
+        Assert.Throws<AssertionException>(() => new Stat.Data(string.Empty , 999));
     }
 
 #endregion
