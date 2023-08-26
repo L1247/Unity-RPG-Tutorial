@@ -4,7 +4,6 @@ using System;
 using Game.Scripts.Values;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Assertions;
 using Math = rStarUtility.Util.Helper.Math;
 
 #endregion
@@ -65,9 +64,12 @@ namespace Game.Scripts.RPG
             [SuffixLabel("@AmountSuffix" , overlay : true , Icon = SdfIconType.ShieldFillExclamation)]
             [OnValueChanged("OnAmountChanged")]
             [SerializeField]
+            [LabelText("數值")]
             private float amount;
 
             [SerializeField]
+            [ValidateInput("@string.IsNullOrEmpty(this.name) == false" , "名稱是空白，需要輸入任意名稱")]
+            [LabelText("名稱")]
             private string name;
 
         #endregion
@@ -83,12 +85,6 @@ namespace Game.Scripts.RPG
         #endregion
 
         #region Private Methods
-
-            [Button]
-            private void Log()
-            {
-                Debug.Log($"{amount}");
-            }
 
             private void OnAmountChanged(float newAmount)
             {
