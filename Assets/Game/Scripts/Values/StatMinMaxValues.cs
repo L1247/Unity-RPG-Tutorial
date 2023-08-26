@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Game.Scripts.Names;
+using rStarUtility.Util.Extensions.Csharp;
 
 namespace Game.Scripts.Values
 {
@@ -22,12 +23,12 @@ namespace Game.Scripts.Values
 
         public static float GetMax(string name)
         {
-            return maxLookUp.ContainsKey(name) ? maxLookUp[name] : float.MaxValue;
+            return maxLookUp.GetOrReturn(name , float.MaxValue);
         }
 
         public static float GetMin(string name)
         {
-            return minLookUp.ContainsKey(name) ? minLookUp[name] : 0;
+            return minLookUp.GetOrReturn(name , 0);
         }
     }
 }

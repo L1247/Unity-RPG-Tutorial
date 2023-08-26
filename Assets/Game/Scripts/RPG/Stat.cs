@@ -51,7 +51,7 @@ namespace Game.Scripts.RPG
 
         #region Private Variables
 
-            private float MinValue => StatMinMaxValues.GetMin(name);
+            private float MinValue => StatMinMaxValues.GetMin(Name);
             private float MaxValue => StatMinMaxValues.GetMax(Name);
 
             [MinValue("@MinValue")]
