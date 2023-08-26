@@ -2,9 +2,11 @@
 
 using System;
 using System.Collections.Generic;
+using Game.Scripts.Helpers;
 using Game.Scripts.Names;
 using Game.Scripts.RPG;
 using rStarUtility.Generic.Infrastructure;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
 
@@ -101,7 +103,17 @@ namespace Game.Scripts.Players.Main
         {
         #region Public Variables
 
+            [ValidateInput("StatDataValidation" , ContinuousValidationCheck = true)]
             public List<Stat.Data> statDatas = new List<Stat.Data>();
+
+        #endregion
+
+        #region Private Methods
+
+            private bool StatDataValidation(List<Stat.Data> datas , ref string errorMessage)
+            {
+                return ValidateHelper.StatDataValidation(datas , ref errorMessage);
+            }
 
         #endregion
         }

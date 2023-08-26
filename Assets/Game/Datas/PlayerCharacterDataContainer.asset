@@ -14,7 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCharacterData:
     statDatas:
-    - amount: 1
+    - amount: 30
       name: MoveSpeed
-    - amount: -0.3
+    - amount: 1
       name: Atk
+    - amount: 0
+      name: Atk1
+    - amount: 0
+      name: 112
+    - amount: 0
+      name: 11
