@@ -65,13 +65,18 @@ namespace Game.Scripts.RPG
             [SuffixLabel("@AmountSuffix" , overlay : true , Icon = SdfIconType.ShieldFillExclamation)]
             [OnValueChanged("OnAmountChanged")]
             [SerializeField]
-            [LabelText("數值")]
+            [LabelText("數值:")]
             [ValidateInput("MinMaxValidation" , "最大值不能小於最小值")]
+            [LabelWidth(30)]
+            [HorizontalGroup("StatData")]
             private float amount;
 
             [SerializeField]
             [ValidateInput("@ValidateHelper.ValidateString(this.name)" , "名稱是空白，需要輸入任意名稱")]
-            [LabelText("名稱")]
+            [LabelText("名稱:")]
+            [PropertyOrder(-100)]
+            [HorizontalGroup("StatData")]
+            [LabelWidth(30)]
             private string name;
 
         #endregion
