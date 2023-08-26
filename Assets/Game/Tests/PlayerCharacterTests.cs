@@ -56,6 +56,7 @@ public class PlayerCharacterTests : TestFixture_DI_Log
         character.SetMoveSpeed(0);
 
         character.GetStatFinalValue(StatNames.MoveSpeed).ShouldBe(1);
+        // character.GetStatFinalValue(StatNames.Atk).ShouldBe(1000);
     }
 
     [Test(Description = "數值資料名稱不能為空白，會錯誤")]
