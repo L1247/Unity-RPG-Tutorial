@@ -6,6 +6,7 @@ using Game.Scripts.Names;
 using Game.Scripts.Players.Handlers;
 using Game.Scripts.Players.Main;
 using Game.Scripts.RPG;
+using Game.Tests.FakeDatas;
 using NSubstitute;
 using NUnit.Framework;
 using rStarUtility.Generic.TestExtensions;
@@ -46,6 +47,21 @@ public class PlayerCharacterTests : TestFixture_DI_Log
         playerCharacter.ShouldTransformPositionBe(1 , 1);
         moveHandler.Tick();
         playerCharacter.ShouldTransformPositionBe(2 , 2);
+    }
+
+    [Test(Description = "設定角色任意名稱數值時，會限制最終數值的最大最小值")]
+    public void Set_PlayerCharacter_Any_Stats_Amount_WouldBe_Clamp_In_Min_Max()
+    {
+        var statName  = "123";
+        var statDatas = new List<Stat.Data> { new FakeStatData(statName , 0 , 2 , 99) };
+        BindInstance(new PlayerCharacter.Data() { statDatas = statDatas });
+        var character = NewPlayerCharacter();
+        character.GetStatFinalValue(statName).ShouldBe(2);
+
+        character.SetStatAmount(statName , -5);
+        character.GetStatFinalValue(statName).ShouldBe(2);
+        character.SetStatAmount(statName , 100);
+        character.GetStatFinalValue(statName).ShouldBe(99);
     }
 
     [Test(Description = "設定角色數值時，如果有上下限，會限制最終數值為最大最小值內")]

@@ -22,17 +22,19 @@ namespace Game.Scripts.RPG
 
     #region Private Variables
 
-        private float Min => StatMinMaxValues.GetMin(Name);
-        private float Max => StatMinMaxValues.GetMax(Name);
+        private readonly float min;
+        private readonly float max;
 
     #endregion
 
     #region Constructor
 
-        public Stat(string statName , float statAmount)
+        public Stat(Data statData)
         {
-            Name = statName;
-            SetAmount(statAmount);
+            min  = statData.MinValue;
+            max  = statData.MaxValue;
+            Name = statData.Name;
+            SetAmount(statData.Amount);
         }
 
     #endregion
@@ -41,7 +43,7 @@ namespace Game.Scripts.RPG
 
         public void SetAmount(float newAmount)
         {
-            Amount = Math.Clamp(newAmount , Min , Max);
+            Amount = Math.Clamp(newAmount , min , max);
         }
 
     #endregion
@@ -53,15 +55,15 @@ namespace Game.Scripts.RPG
         {
         #region Public Variables
 
-            public float  Amount => amount;
-            public string Name   => name;
+            public         float  Amount   => amount;
+            public virtual float  MaxValue => StatMinMaxValues.GetMax(Name);
+            public virtual float  MinValue => StatMinMaxValues.GetMin(Name);
+            public         string Name     => name;
 
         #endregion
 
         #region Private Variables
 
-            private float  MinValue     => StatMinMaxValues.GetMin(Name);
-            private float  MaxValue     => StatMinMaxValues.GetMax(Name);
             private string MaxValueInfo => StatMinMaxValues.GetMaxInfo(Name);
             private string MinMaxInfo   => $"最小值: {MinValue}\n最大值: {MaxValueInfo}";
             private string AmountSuffix => $"{MinValue} ~ {MaxValueInfo}";
@@ -96,6 +98,25 @@ namespace Game.Scripts.RPG
                 SetAmount(amount);
             }
 
+            protected Data() { }
+
+        #endregion
+
+        #region Protected Methods
+
+            protected void SetAmount(float newAmount)
+            {
+                var min = MinValue;
+                var max = MaxValue;
+                amount = Math.Clamp(newAmount , min , max);
+            }
+
+            protected void SetName(string name)
+            {
+                Assert.IsTrue(string.IsNullOrEmpty(name) == false , "name string is null or empty.");
+                this.name = name;
+            }
+
         #endregion
 
         #region Private Methods
@@ -108,19 +129,6 @@ namespace Game.Scripts.RPG
             private void OnAmountChanged(float newAmount)
             {
                 SetAmount(newAmount);
-            }
-
-            private void SetAmount(float newAmount)
-            {
-                var min = MinValue;
-                var max = MaxValue;
-                amount = Math.Clamp(newAmount , min , max);
-            }
-
-            private void SetName(string name)
-            {
-                Assert.IsTrue(string.IsNullOrEmpty(name) == false , "name string is null or empty.");
-                this.name = name;
             }
 
         #endregion

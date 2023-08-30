@@ -65,7 +65,7 @@ namespace Game.Scripts.Players.Main
         {
             var (contains , stat) = stats.FindContent(_ => _.Name == statName);
             if (contains) stat.SetAmount(statAmount);
-            else stats.Add(new Stat(statName , statAmount));
+            else stats.Add(new Stat(new Stat.Data(statName , statAmount)));
         }
 
     #endregion
@@ -86,11 +86,7 @@ namespace Game.Scripts.Players.Main
 
         private void InitStats()
         {
-            foreach (var statData in data.statDatas)
-            {
-                var stat = new Stat(statData.Name , statData.Amount);
-                stats.Add(stat);
-            }
+            data.statDatas.ForEach(data => stats.Add(new Stat(data)));
         }
 
     #endregion
