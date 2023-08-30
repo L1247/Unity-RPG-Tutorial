@@ -20,11 +20,18 @@ namespace Game.Scripts.RPG
 
     #endregion
 
+    #region Private Variables
+
+        private float Min => StatMinMaxValues.GetMin(Name);
+        private float Max => StatMinMaxValues.GetMax(Name);
+
+    #endregion
+
     #region Constructor
 
         public Stat(string statName , float statAmount)
         {
-            Name   = statName;
+            Name = statName;
             SetAmount(statAmount);
         }
 
@@ -34,9 +41,7 @@ namespace Game.Scripts.RPG
 
         public void SetAmount(float newAmount)
         {
-            var min = StatMinMaxValues.GetMin(Name);
-            var max = StatMinMaxValues.GetMax(Name);
-            Amount = Math.Clamp(newAmount,min,max);
+            Amount = Math.Clamp(newAmount , Min , Max);
         }
 
     #endregion
