@@ -25,7 +25,7 @@ namespace Game.Scripts.RPG
         public Stat(string statName , float statAmount)
         {
             Name   = statName;
-            Amount = statAmount;
+            SetAmount(statAmount);
         }
 
     #endregion
@@ -34,7 +34,9 @@ namespace Game.Scripts.RPG
 
         public void SetAmount(float newAmount)
         {
-            Amount = newAmount;
+            var min = StatMinMaxValues.GetMin(Name);
+            var max = StatMinMaxValues.GetMax(Name);
+            Amount = Math.Clamp(newAmount,min,max);
         }
 
     #endregion

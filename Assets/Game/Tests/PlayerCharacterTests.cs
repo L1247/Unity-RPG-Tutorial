@@ -48,15 +48,17 @@ public class PlayerCharacterTests : TestFixture_DI_Log
         playerCharacter.ShouldTransformPositionBe(2 , 2);
     }
 
-    [Test(Description = "設定角色數值時，會限制最終數值的最大最小值")]
-    [Ignore("還沒做完，正確為計算值的限制")]
-    public void Set_PlayerCharacter_Stats_Amount_WouldBe_Clamp()
+    [Test(Description = "設定角色數值時，如果有上下限，會限制最終數值為最大最小值內")]
+    public void Set_PlayerCharacter_Stats_Amount_WouldBe_Clamp_If_MinMaxExist()
     {
         var character = NewPlayerCharacter();
-        character.SetMoveSpeed(0);
 
+        character.SetMoveSpeed(0);
         character.GetStatFinalValue(StatNames.MoveSpeed).ShouldBe(1);
-        // character.GetStatFinalValue(StatNames.Atk).ShouldBe(1000);
+        character.SetMoveSpeed(31);
+        character.GetStatFinalValue(StatNames.MoveSpeed).ShouldBe(30);
+        character.SetAtk(9999);
+        character.GetStatFinalValue(StatNames.Atk).ShouldBe(1000);
     }
 
     [Test(Description = "數值資料名稱不能為空白，會錯誤")]

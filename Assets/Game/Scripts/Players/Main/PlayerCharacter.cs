@@ -57,6 +57,13 @@ namespace Game.Scripts.Players.Main
             return finalValue;
         }
 
+        public void SetAtk(float atk)
+        {
+            var (contains , stat) = stats.FindContent(_ => _.Name == StatNames.Atk);
+            if (contains) stat.SetAmount(atk);
+            else stats.Add(new Stat(StatNames.Atk , atk));
+        }
+
         public void SetMoveSpeed(float moveSpeed)
         {
             var (contains , stat) = stats.FindContent(_ => _.Name == StatNames.MoveSpeed);
