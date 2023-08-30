@@ -60,6 +60,9 @@ namespace Game.Scripts.RPG
             public virtual float  MinValue => StatMinMaxValues.GetMin(Name);
             public         string Name     => name;
 
+            [HideInInspector]
+            public bool isPlayer;
+
         #endregion
 
         #region Private Variables
@@ -86,11 +89,18 @@ namespace Game.Scripts.RPG
             [PropertyOrder(-100)]
             [HorizontalGroup("StatData")]
             [LabelWidth(30)]
+            [ValueDropdown("GetStat" , DropdownTitle = "數值列表" , ExpandAllMenuItems = true , IsUniqueList = true ,
+                           DropdownHeight = 250 , DropdownWidth = 300)]
             private string name;
 
         #endregion
 
         #region Constructor
+
+            public Data(string name)
+            {
+                this.name = name;
+            }
 
             public Data(string name , float amount)
             {
@@ -120,6 +130,11 @@ namespace Game.Scripts.RPG
         #endregion
 
         #region Private Methods
+
+            private ValueDropdownList<string> GetStat()
+            {
+                return DropdownList.GetAllStatNames(isPlayer);
+            }
 
             private bool MinMaxValidation()
             {
