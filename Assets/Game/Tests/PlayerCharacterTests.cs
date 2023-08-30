@@ -33,7 +33,7 @@ public class PlayerCharacterTests : TestFixture_DI_Log
     public void MovePlayerCharacter_By_PlayerInput()
     {
         var playerCharacter = NewPlayerCharacter();
-        playerCharacter.SetMoveSpeed(1);
+        playerCharacter.SetStatAmount(StatNames.MoveSpeed , 1);
 
         var inputState   = BindAndResolve<PlayerInputState>();
         var timeProvider = BindMockAndResolve<ITimeProvider>();
@@ -53,11 +53,11 @@ public class PlayerCharacterTests : TestFixture_DI_Log
     {
         var character = NewPlayerCharacter();
 
-        character.SetMoveSpeed(0);
+        character.SetStatAmount(StatNames.MoveSpeed , 0);
         character.GetStatFinalValue(StatNames.MoveSpeed).ShouldBe(1);
-        character.SetMoveSpeed(31);
+        character.SetStatAmount(StatNames.MoveSpeed , 31);
         character.GetStatFinalValue(StatNames.MoveSpeed).ShouldBe(30);
-        character.SetAtk(9999);
+        character.SetStatAmount(StatNames.Atk , 9999);
         character.GetStatFinalValue(StatNames.Atk).ShouldBe(1000);
     }
 

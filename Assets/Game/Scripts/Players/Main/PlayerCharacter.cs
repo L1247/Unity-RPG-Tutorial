@@ -3,7 +3,6 @@
 using System;
 using System.Collections.Generic;
 using Game.Scripts.Helpers;
-using Game.Scripts.Names;
 using Game.Scripts.RPG;
 using rStarUtility.Generic.Infrastructure;
 using Sirenix.OdinInspector;
@@ -57,23 +56,16 @@ namespace Game.Scripts.Players.Main
             return finalValue;
         }
 
-        public void SetAtk(float atk)
-        {
-            var (contains , stat) = stats.FindContent(_ => _.Name == StatNames.Atk);
-            if (contains) stat.SetAmount(atk);
-            else stats.Add(new Stat(StatNames.Atk , atk));
-        }
-
-        public void SetMoveSpeed(float moveSpeed)
-        {
-            var (contains , stat) = stats.FindContent(_ => _.Name == StatNames.MoveSpeed);
-            if (contains) stat.SetAmount(moveSpeed);
-            else stats.Add(new Stat(StatNames.MoveSpeed , moveSpeed));
-        }
-
         public void SetPos(Vector2 newPos)
         {
             Trans.position = newPos;
+        }
+
+        public void SetStatAmount(string statName , float statAmount)
+        {
+            var (contains , stat) = stats.FindContent(_ => _.Name == statName);
+            if (contains) stat.SetAmount(statAmount);
+            else stats.Add(new Stat(statName , statAmount));
         }
 
     #endregion
