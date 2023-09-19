@@ -23,7 +23,7 @@ public class PlayerCharacterTests : TestFixture_DI_Log
     public void Init_PlayerCharacter_Stats_WouldBe_Correct()
     {
         var statDatas = new List<Stat.Data> { new Stat.Data(StatNames.Atk , 999) };
-        BindInstance(new PlayerCharacter.Data() { statDatas = statDatas });
+        Bind_Instance(new PlayerCharacter.Data() { statDatas = statDatas });
         var character = NewPlayerCharacter();
 
         character.Stats.CountShouldBe(1);
@@ -36,12 +36,12 @@ public class PlayerCharacterTests : TestFixture_DI_Log
         var playerCharacter = NewPlayerCharacter();
         playerCharacter.SetStatAmount(StatNames.MoveSpeed , 1);
 
-        var inputState   = BindAndResolve<PlayerInputState>();
-        var timeProvider = BindMockAndResolve<ITimeProvider>();
+        var inputState   = Bind_And_Resolve<PlayerInputState>();
+        var timeProvider = Bind_Mock_And_Resolve<ITimeProvider>();
         timeProvider.GetDeltaTime().Returns(1);
         inputState.SetMoveDirection(1 , 1);
 
-        var moveHandler = BindAndResolve<PlayerMoveHandler>();
+        var moveHandler = Bind_And_Resolve<PlayerMoveHandler>();
 
         moveHandler.Tick();
         playerCharacter.ShouldTransformPositionBe(1 , 1);
@@ -54,7 +54,7 @@ public class PlayerCharacterTests : TestFixture_DI_Log
     {
         var statName  = "123";
         var statDatas = new List<Stat.Data> { new FakeStatData(statName , 0 , 2 , 99) };
-        BindInstance(new PlayerCharacter.Data() { statDatas = statDatas });
+        Bind_Instance(new PlayerCharacter.Data() { statDatas = statDatas });
         var character = NewPlayerCharacter();
         character.GetStatFinalValue(statName).ShouldBe(2);
 
@@ -89,9 +89,9 @@ public class PlayerCharacterTests : TestFixture_DI_Log
 
     private PlayerCharacter NewPlayerCharacter()
     {
-        BindInstance(new PlayerCharacter.Data());
-        var playerCharacter = Bind_ComponentOnNewGameObject_And_Resolve<PlayerCharacter>();
-        return playerCharacter;
+        Bind_Instance(new PlayerCharacter.Data());
+        Bind_InterfacesAndSelfTo_From_NewGameObject<PlayerCharacter>();
+        return Resolve<PlayerCharacter>();
     }
 
 #endregion

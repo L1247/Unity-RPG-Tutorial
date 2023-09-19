@@ -2,7 +2,9 @@
 
 using System;
 using System.Collections.Generic;
+using Game.Scripts.Battle.Misc;
 using Game.Scripts.Helpers;
+using Game.Scripts.Names;
 using Game.Scripts.RPG;
 using rStarUtility.Generic.Infrastructure;
 using Sirenix.OdinInspector;
@@ -13,9 +15,11 @@ using Zenject;
 
 namespace Game.Scripts.Players.Main
 {
-    public class PlayerCharacter : MonoBehaviour
+    public class PlayerCharacter : MonoBehaviour , Mover
     {
     #region Public Variables
+
+        public float MoveSpeed => GetStatFinalValue(StatNames.MoveSpeed);
 
         public IEnumerable<Stat> Stats => stats.Contents;
 
