@@ -1,7 +1,6 @@
 #region
 
 using Game.Scripts.Players.Main;
-using UnityEngine;
 using Zenject;
 
 #endregion
@@ -21,8 +20,8 @@ namespace Game.Scripts.Players.Handlers
 
         public void Tick()
         {
-            inputState.SetHorizontal(Input.GetAxisRaw("Horizontal"));
-            inputState.SetVertical(Input.GetAxisRaw("Vertical"));
+            // inputState.SetHorizontal(Input.GetAxisRaw("Horizontal"));
+            // inputState.SetVertical(Input.GetAxisRaw("Vertical"));
         }
 
     #endregion

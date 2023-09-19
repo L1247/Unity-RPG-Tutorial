@@ -25,16 +25,10 @@ public class PlayerCharacterTests : TestFixture_DI_Log
     {
         var gameState = Bind_And_Resolve<GameState>();
         Bind_InterfacesTo<Movable>();
-        var playerCharacter = NewPlayerCharacter();
-        playerCharacter.SetStatAmount(StatNames.MoveSpeed , 1);
 
-        var inputState   = Bind_And_Resolve<PlayerInputState>();
-        var timeProvider = Bind_Mock_And_Resolve<ITimeProvider>();
-        timeProvider.GetDeltaTime().Returns(1);
-        inputState.SetMoveDirection(1 , 1);
+        var moveHandler = Given_A_PlayerMoveHandler();
 
-        var moveHandler = Bind_And_Resolve<PlayerMoveHandler>();
-
+        var playerCharacter = Resolve<PlayerCharacter>();
         gameState.SetPauseState(true);
         moveHandler.Tick();
         playerCharacter.ShouldTransformPositionBe(0 , 0);
@@ -57,15 +51,9 @@ public class PlayerCharacterTests : TestFixture_DI_Log
     [Test(Description = "透過玩家輸入，移動玩家角色")]
     public void MovePlayerCharacter_By_PlayerInput()
     {
-        var playerCharacter = NewPlayerCharacter();
-        playerCharacter.SetStatAmount(StatNames.MoveSpeed , 1);
-        var inputState   = Bind_And_Resolve<PlayerInputState>();
-        var timeProvider = Bind_Mock_And_Resolve<ITimeProvider>();
-        timeProvider.GetDeltaTime().Returns(1);
-        inputState.SetMoveDirection(1 , 1);
+        var moveHandler = Given_A_PlayerMoveHandler();
 
-        var moveHandler = Bind_And_Resolve<PlayerMoveHandler>();
-
+        var playerCharacter = Resolve<PlayerCharacter>();
         moveHandler.Tick();
         playerCharacter.ShouldTransformPositionBe(1 , 1);
         moveHandler.Tick();
@@ -109,6 +97,19 @@ public class PlayerCharacterTests : TestFixture_DI_Log
 #endregion
 
 #region Private Methods
+
+    private PlayerMoveHandler Given_A_PlayerMoveHandler()
+    {
+        var playerCharacter = NewPlayerCharacter();
+        playerCharacter.SetStatAmount(StatNames.MoveSpeed , 1);
+        var inputState   = Bind_And_Resolve<PlayerInputState>();
+        var timeProvider = Bind_Mock_And_Resolve<ITimeProvider>();
+        timeProvider.GetDeltaTime().Returns(1);
+        inputState.SetMoveDirection(1 , 1);
+
+        var moveHandler = Bind_And_Resolve<PlayerMoveHandler>();
+        return moveHandler;
+    }
 
     private PlayerCharacter NewPlayerCharacter()
     {
