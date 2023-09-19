@@ -33,7 +33,6 @@ namespace Game.Scripts.Battle.Handlers
             var pause         = gameState.Pause;
             var newPauseState = !pause;
             panelPause.SetActive(newPauseState);
-            Debug.Log($"Pause: {newPauseState}");
             gameState.SetPauseState(newPauseState);
         }
 

@@ -22,6 +22,8 @@ namespace Game.Scripts.Battle.Handlers
         public void Tick()
         {
             inputState.SetPauseKeyDown(Input.GetKeyDown(KeyCode.Escape));
+            inputState.SetHorizontal((int)Input.GetAxisRaw("Horizontal"));
+            inputState.SetVertical((int)Input.GetAxisRaw("Vertical"));
         }
 
     #endregion

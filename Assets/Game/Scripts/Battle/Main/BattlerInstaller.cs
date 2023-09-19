@@ -22,6 +22,7 @@ namespace Game.Scripts.Battle.Main
             Container.BindInterfacesAndSelfTo<Movable>().AsSingle();
             Container.BindInterfacesTo<InputHandler>().AsSingle();
             Container.BindInterfacesTo<GamePauseHandler>().AsSingle();
+            Container.BindInterfacesTo<InputKeyUIHandler>().AsSingle();
 
             Container.BindExecutionOrder<InputHandler>(-10000);
         }
