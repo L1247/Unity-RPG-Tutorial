@@ -21,20 +21,19 @@ public class PlayerCharacterTests : TestFixture_DI_Log
 #region Test Methods
 
     [Test(Description = "暫停遊戲，玩家不能移動玩家角色")]
-    public void Cant_MovePlayerCharacter_When_Game_Is_Pausing()
+    [TestCase(false , 1 , Description = "沒有暫停，可以移動")]
+    [TestCase(true , 0 , Description = "暫停，不能移動")]
+    public void Cant_MovePlayerCharacter_When_Game_Is_Pausing(bool pause , int expectedPos)
     {
         var gameState = Bind_And_Resolve<GameState>();
+        gameState.SetPauseState(pause);
         Bind_InterfacesTo<Movable>();
 
         var moveHandler = Given_A_PlayerMoveHandler();
 
         var playerCharacter = Resolve<PlayerCharacter>();
-        gameState.SetPauseState(true);
         moveHandler.Tick();
-        playerCharacter.ShouldTransformPositionBe(0 , 0);
-        gameState.SetPauseState(false);
-        moveHandler.Tick();
-        playerCharacter.ShouldTransformPositionBe(1 , 1);
+        playerCharacter.ShouldTransformPositionBe(expectedPos , expectedPos);
     }
 
     [Test(Description = "初始化角色，角色數值正確")]
