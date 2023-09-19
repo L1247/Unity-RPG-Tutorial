@@ -2,6 +2,7 @@
 
 using Game.Scripts.Battle.Misc;
 using Game.Scripts.Battle.States;
+using rStarUtility.Util.Extensions.Unity;
 using UnityEngine;
 using Zenject;
 
@@ -19,6 +20,9 @@ namespace Game.Scripts.Battle.Handlers
         [Inject]
         private GameState gameState;
 
+        [Inject(Id = "Panel - Pause")]
+        private RectTransform panelPause;
+
     #endregion
 
     #region Public Methods
@@ -28,6 +32,7 @@ namespace Game.Scripts.Battle.Handlers
             if (inputState.PauseKeyDown == false) return;
             var pause         = gameState.Pause;
             var newPauseState = !pause;
+            panelPause.SetActive(newPauseState);
             Debug.Log($"Pause: {newPauseState}");
             gameState.SetPauseState(newPauseState);
         }
