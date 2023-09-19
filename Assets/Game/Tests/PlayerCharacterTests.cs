@@ -57,8 +57,6 @@ public class PlayerCharacterTests : TestFixture_DI_Log
     [Test(Description = "透過玩家輸入，移動玩家角色")]
     public void MovePlayerCharacter_By_PlayerInput()
     {
-        var movable = Bind_Mock_And_Resolve<IMovable>();
-        movable.Get().Returns(true);
         var playerCharacter = NewPlayerCharacter();
         playerCharacter.SetStatAmount(StatNames.MoveSpeed , 1);
         var inputState   = Bind_And_Resolve<PlayerInputState>();
@@ -114,6 +112,12 @@ public class PlayerCharacterTests : TestFixture_DI_Log
 
     private PlayerCharacter NewPlayerCharacter()
     {
+        if (HasBinding<IMovable>() == false)
+        {
+            var movable = Bind_Mock_And_Resolve<IMovable>();
+            movable.Get().Returns(true);
+        }
+
         Bind_Instance(new PlayerCharacter.Data());
         Bind_InterfacesAndSelfTo_From_NewGameObject<PlayerCharacter>();
         return Resolve<PlayerCharacter>();

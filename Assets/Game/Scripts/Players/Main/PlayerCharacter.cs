@@ -38,7 +38,7 @@ namespace Game.Scripts.Players.Main
 
     #region Private Variables
 
-        [Inject(Optional = true)]
+        [Inject]
         private IMovable movable;
 
         private readonly GenericRepository<Stat> stats = new GenericRepository<Stat>();
