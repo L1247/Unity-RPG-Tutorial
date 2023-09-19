@@ -12,6 +12,8 @@ namespace Game.Scripts.Battle.States
 
         public void SetPauseState(bool pause)
         {
+            var DoNothingIfSameValue = pause == Pause;
+            if (DoNothingIfSameValue) return;
             Pause = pause;
         }
 
