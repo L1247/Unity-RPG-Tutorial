@@ -26,9 +26,10 @@ namespace Game.Scripts.Battle.Handlers
         public void Tick()
         {
             if (inputState.PauseKeyDown == false) return;
-            var pause = gameState.Pause;
-            Debug.Log($"Pause: {pause}");
-            gameState.SetPauseState(!pause);
+            var pause         = gameState.Pause;
+            var newPauseState = !pause;
+            Debug.Log($"Pause: {newPauseState}");
+            gameState.SetPauseState(newPauseState);
         }
 
     #endregion
