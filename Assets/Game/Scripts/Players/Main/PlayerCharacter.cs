@@ -19,6 +19,8 @@ namespace Game.Scripts.Players.Main
     {
     #region Public Variables
 
+        public bool Movable => movable.Get();
+
         public float MoveSpeed => GetStatFinalValue(StatNames.MoveSpeed);
 
         public IEnumerable<Stat> Stats => stats.Contents;
@@ -35,6 +37,9 @@ namespace Game.Scripts.Players.Main
     #endregion
 
     #region Private Variables
+
+        [Inject(Optional = true)]
+        private IMovable movable;
 
         private readonly GenericRepository<Stat> stats = new GenericRepository<Stat>();
 

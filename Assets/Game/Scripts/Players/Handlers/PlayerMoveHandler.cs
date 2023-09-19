@@ -30,6 +30,8 @@ namespace Game.Scripts.Players.Handlers
             // movement: fps * player's move speed * move direction
             // newPos = movement + player's pos
             // set player's character position by new position. 
+            // can't move when movable is false.
+            if (mover.Movable == false) return;
             var moveSpeed = mover.MoveSpeed;
             var movement  = timeProvider.GetDeltaTime() * moveSpeed * inputState.MoveDirection;
             var newPos    = movement + mover.GetPos();

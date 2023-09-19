@@ -10,6 +10,8 @@ namespace Game.Scripts.Battle.Misc
     {
     #region Public Variables
 
+        bool Movable { get; }
+
         float MoveSpeed { get; }
 
     #endregion

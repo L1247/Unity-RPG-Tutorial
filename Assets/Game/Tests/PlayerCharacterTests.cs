@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using Game.Scripts.Battle.Misc;
+using Game.Scripts.Battle.States;
 using Game.Scripts.Names;
 using Game.Scripts.Players.Handlers;
 using Game.Scripts.Players.Main;
@@ -19,6 +20,29 @@ public class PlayerCharacterTests : TestFixture_DI_Log
 {
 #region Test Methods
 
+    [Test(Description = "暫停遊戲，玩家不能移動玩家角色")]
+    public void Cant_MovePlayerCharacter_When_Game_Is_Pausing()
+    {
+        var gameState = Bind_And_Resolve<GameState>();
+        Bind_InterfacesTo<Movable>();
+        var playerCharacter = NewPlayerCharacter();
+        playerCharacter.SetStatAmount(StatNames.MoveSpeed , 1);
+
+        var inputState   = Bind_And_Resolve<PlayerInputState>();
+        var timeProvider = Bind_Mock_And_Resolve<ITimeProvider>();
+        timeProvider.GetDeltaTime().Returns(1);
+        inputState.SetMoveDirection(1 , 1);
+
+        var moveHandler = Bind_And_Resolve<PlayerMoveHandler>();
+
+        gameState.SetPauseState(true);
+        moveHandler.Tick();
+        playerCharacter.ShouldTransformPositionBe(0 , 0);
+        gameState.SetPauseState(false);
+        moveHandler.Tick();
+        playerCharacter.ShouldTransformPositionBe(1 , 1);
+    }
+
     [Test(Description = "初始化角色，角色數值正確")]
     public void Init_PlayerCharacter_Stats_WouldBe_Correct()
     {
@@ -33,9 +57,10 @@ public class PlayerCharacterTests : TestFixture_DI_Log
     [Test(Description = "透過玩家輸入，移動玩家角色")]
     public void MovePlayerCharacter_By_PlayerInput()
     {
+        var movable = Bind_Mock_And_Resolve<IMovable>();
+        movable.Get().Returns(true);
         var playerCharacter = NewPlayerCharacter();
         playerCharacter.SetStatAmount(StatNames.MoveSpeed , 1);
-
         var inputState   = Bind_And_Resolve<PlayerInputState>();
         var timeProvider = Bind_Mock_And_Resolve<ITimeProvider>();
         timeProvider.GetDeltaTime().Returns(1);
