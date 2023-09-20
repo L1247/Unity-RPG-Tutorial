@@ -27,7 +27,7 @@ public class PlayerCharacterTests : TestFixture_DI_Log
     {
         var gameState = Bind_And_Resolve<GameState>();
         gameState.SetPauseState(pause);
-        Bind_InterfacesTo<Movable>();
+        Bind_InterfacesTo<PlayerMovable>();
 
         var moveHandler = Given_A_PlayerMoveHandler();
 
@@ -112,9 +112,9 @@ public class PlayerCharacterTests : TestFixture_DI_Log
 
     private PlayerCharacter NewPlayerCharacter()
     {
-        if (HasBinding<IMovable>() == false)
+        if (HasBinding<Movable>() == false)
         {
-            var movable = Bind_Mock_And_Resolve<IMovable>();
+            var movable = Bind_Mock_And_Resolve<Movable>();
             movable.Get().Returns(true);
         }
 

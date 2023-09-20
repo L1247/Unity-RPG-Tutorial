@@ -19,7 +19,7 @@ namespace Game.Scripts.Battle.Main
             Container.Bind<InputState>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<TimeProvider>().AsSingle();
-            Container.BindInterfacesAndSelfTo<Movable>().AsSingle();
+            Container.BindInterfacesAndSelfTo<PlayerMovable>().AsSingle();
             Container.BindInterfacesTo<InputHandler>().AsSingle();
             Container.BindInterfacesTo<GamePauseHandler>().AsSingle();
             Container.BindInterfacesTo<InputKeyUIHandler>().AsSingle();

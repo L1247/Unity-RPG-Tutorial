@@ -1,6 +1,6 @@
 namespace Game.Scripts.Battle.Misc
 {
-    public interface IMovable
+    public interface Movable
     {
     #region Public Methods
 

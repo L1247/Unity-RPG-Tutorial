@@ -7,7 +7,7 @@ using Zenject;
 
 namespace Game.Scripts.Battle.States
 {
-    public class Movable : IMovable
+    public class PlayerMovable : Movable
     {
     #region Private Variables
 
