@@ -42,8 +42,7 @@ namespace Game.Scripts.Enemies
         public void DealDamage(int damage)
         {
             hp -= damage;
-            var percent = hp / maxHp;
-            Debug.Log($"{percent}");
+            var percent = hp / (float)maxHp;
             hpBar.SetPercent(percent);
         }
 
