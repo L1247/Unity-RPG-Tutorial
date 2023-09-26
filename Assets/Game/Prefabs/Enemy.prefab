@@ -54,7 +54,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3ef2b46f1bc7c0c48b990b80b283c88f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -101,6 +101,10 @@ MonoBehaviour:
   hpBar: {fileID: 7735922662907005138}
   maxHp: 100
   hp: 1
+  normalMaterial: {fileID: 2100000, guid: 3ef2b46f1bc7c0c48b990b80b283c88f, type: 2}
+  flashMaterial: {fileID: 2100000, guid: d6840ef3d9c3e924d9dafd28c6d0dfc9, type: 2}
+  spriteRenderer: {fileID: 4657078324684726780}
+  flashDuration: 0.2
 --- !u!1 &7716579586986861477
 GameObject:
   m_ObjectHideFlags: 0
