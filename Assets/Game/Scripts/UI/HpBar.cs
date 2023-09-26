@@ -58,9 +58,10 @@ namespace Game.Scripts.UI
 
         private void DoDelayEffect()
         {
-            delta.DOFillAmount(front.fillAmount , 0.3f).SetEase(Ease.InOutCubic);
             // delta.fillAmount      = front.fillAmount;
-            delayEffectExecuting = false;
+            delta.DOFillAmount(front.fillAmount , 0.3f)
+                 .SetEase(Ease.InOutCubic)
+                 .OnComplete(() => delayEffectExecuting = false);
         }
 
     #endregion

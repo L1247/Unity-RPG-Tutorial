@@ -59,9 +59,9 @@ namespace Game.Scripts.Enemies
 
         [Button(ButtonSizes.Medium)]
         [GUIColor(1 , 0 , 0)]
-        public void DealDamage(int damage)
+        public void DealDamage()
         {
-            hp -= damage;
+            hp -= 10;
             UpdateHpBar();
             DoFlashEffect();
         }
