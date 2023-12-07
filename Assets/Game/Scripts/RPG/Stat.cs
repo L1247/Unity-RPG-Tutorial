@@ -1,6 +1,7 @@
 #region
 
 using System;
+using Game.Scripts.Helpers;
 using Game.Scripts.Values;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -15,14 +16,16 @@ namespace Game.Scripts.RPG
     {
     #region Public Variables
 
-        public float  Amount { get; private set; }
-        public string Name   { get; }
+        public float Amount { get; private set; }
+
+        public string Name { get; }
 
     #endregion
 
     #region Private Variables
 
         private readonly float min;
+
         private readonly float max;
 
     #endregion
@@ -84,7 +87,7 @@ namespace Game.Scripts.RPG
             private float amount;
 
             [SerializeField]
-            [ValidateInput("@ValidateHelper.ValidateString(this.name)" , "名稱是空白，需要輸入任意名稱")]
+            [ValidateInput(nameof(ValidateName) , "名稱是空白，需要輸入任意名稱")]
             [LabelText("名稱:")]
             [PropertyOrder(-100)]
             [HorizontalGroup("StatData")]
@@ -144,6 +147,11 @@ namespace Game.Scripts.RPG
             private void OnAmountChanged(float newAmount)
             {
                 SetAmount(newAmount);
+            }
+
+            private static bool ValidateName(string name)
+            {
+                return ValidateHelper.ValidateString(name);
             }
 
         #endregion

@@ -108,7 +108,7 @@ namespace Game.Scripts.Players.Main
         #region Public Variables
 
             [ListDrawerSettings(CustomAddFunction = "AddNewStatData")]
-            [ValidateInput("StatDataValidation" , ContinuousValidationCheck = true)]
+            [ValidateInput(nameof(StatDataValidation) , ContinuousValidationCheck = true)]
             public List<Stat.Data> statDatas = new List<Stat.Data>();
 
         #endregion
@@ -118,6 +118,7 @@ namespace Game.Scripts.Players.Main
             private void AddNewStatData()
             {
                 var data = new Stat.Data(string.Empty) { isPlayer = true };
+
                 statDatas.Add(data);
             }
 
